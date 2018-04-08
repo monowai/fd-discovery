@@ -9,14 +9,18 @@
 
     <name>fd-discovery</name>
     <description>Eureka discovery service for FlockData</description>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.1.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <surefire.version>2.19.1</surefire.version>
-        <org.springcloud.version>1.3.1.RELEASE</org.springcloud.version>
-        <org.springboot.version>1.5.4.RELEASE</org.springboot.version>
-        <org.springcloud.release.train>Dalston.SR1</org.springcloud.release.train>
+        <org.springcloud.release.train>Finchley.M9</org.springcloud.release.train>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -26,21 +30,13 @@
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka-server</artifactId>
-            <!--<version>${org.springcloud.version}</version>-->
-
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-            <!--<version>${org.springcloud.version}</version>-->
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <version>${org.springboot.version}</version>
         </dependency>
 
     </dependencies>
@@ -49,15 +45,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <!--<version>Brixton.SR3</version>-->
                 <version>${org.springcloud.release.train}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-netflix</artifactId>
-                <version>${org.springcloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -78,7 +66,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${org.springboot.version}</version>
                 <!-- defined in spring-cloud-starter-parent pom (as documentation hint),
                     but needs to be repeated here -->
                 <configuration>
@@ -265,7 +252,7 @@
                     <plugin>
                         <groupId>com.spotify</groupId>
                         <artifactId>docker-maven-plugin</artifactId>
-                        <version>0.4.14</version>
+                        <version>1.0.0</version>
 
                         <executions>
                             <execution>
@@ -315,5 +302,15 @@
             </build>
         </profile>
     </profiles>
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
 </project>
